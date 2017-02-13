@@ -34,6 +34,11 @@ class db
             $this->db_id = @mysqli_connect($db_location[0], $this->dbConfig['user'], $this->dbConfig['pass'], $this->dbConfig['name'], $db_location[1]);
         else
             $this->db_id = @mysqli_connect($db_location[0], $this->dbConfig['user'], $this->dbConfig['pass'], $this->dbConfig['name']);
+        if(!$this->db_id) return false;
+
+        if(!defined('COLLATE'))
+            define ("COLLATE", "utf8");
+        mysqli_query($this->db_id, "SET NAMES '" . COLLATE . "'");
     }
     /**
      * Функция инициализации конструктора
@@ -62,4 +67,10 @@ class db
 
         return mysqli_fetch_assoc($query_id);
     }
+    function real_escape($value) {
+		if (!is_numeric($value))
+            $value = "'".mysqli_real_escape_string($this->db_id,$value)."'";
+		return $value;
+	}
 }
+?>

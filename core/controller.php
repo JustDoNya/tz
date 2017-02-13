@@ -28,6 +28,7 @@ class controller
      **/
     public function index()
     {
+        mb_internal_encoding("UTF-8");
         if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED_WITH'])
         && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
             header('Content-type: aplication/json');

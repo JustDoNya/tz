@@ -70,7 +70,7 @@ $(function () {
             $('#patronymicBox .description').css('display', 'block');
             error = true;
         } else $('#patronymicBox .description').css('display', 'none');
-        if(!/(\d{4}\-\d{2}\-\d{2})/i.test($('.regForm #bdate').val())){
+        if(!/(\d{4}\-\d{2}\-\d{2})/i.test($('.regForm #bdate').val()) || $('.regForm #bdate').val().length < 1){
             $('#bdateBox .description').css('color', 'red');
             $('#bdateBox .description').text('* Необходимо заполнить дату.');
             $('#bdateBox .description').css('display', 'block');
@@ -82,6 +82,7 @@ $(function () {
                 type : "reg",
                 login : $('.regForm #login').val(),
                 password : $('.regForm #password').val(),
+                repassword : $('.regForm #repassword').val(),
                 email : $('.regForm #email').val(),
                 name : $('.regForm #name').val(),
                 firstname : $('.regForm #firstname').val(),
